@@ -7,6 +7,7 @@ import (
 	"testing"
 )
 
+// TestHealthCheckHandler tests the /health endpoint
 func TestHealthCheckHandler(t *testing.T) {
 	req, err := http.NewRequest("GET", "/health", nil)
 	if err != nil {
