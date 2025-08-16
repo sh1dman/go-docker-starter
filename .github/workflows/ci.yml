@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, develop ]
   pull_request:
     branches: [ main ]
 
@@ -29,3 +29,15 @@ jobs:
     
     - name: Build Docker image
       run: docker build -t go-docker-starter .
+
+  # This job only runs on successful tests
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Deploy (only after tests pass)
+      run: echo "Deploying to production..."

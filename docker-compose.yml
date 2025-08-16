@@ -1,0 +1,11 @@
+version: '3.8'              # Docker Compose file format version
+
+services:                   # Start defining our services
+  web:                      # Service name (you can call it anything)
+    build: .                # Build using Dockerfile in current directory
+    ports:
+      - "8080:8080"        # host_port:container_port mapping
+    restart: unless-stopped # Restart policy for crashes
+    environment:
+      - ENV=development     # Environment variables (optional)
+    container_name: go-server # Friendly container name
